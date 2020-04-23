@@ -39,31 +39,35 @@ def get_input_data_from_TrainingPeaks(file, block_length_days):
 			pass
 	return input_data
 
-#Input Data for the model - will look for a workouts.csv file from Training Peaks. If not found, resorts to your manual entry of TIZ by block
-try: 
-	time_in_zone_by_month = get_input_data_from_TrainingPeaks('workouts.csv', 28)
-except:
-	time_in_zone_by_month=[
-	[1205,902,330,48,20],
-	[1303,1021,371,69,19],
-	[1370,1311,380,53,24],
-	[1389,1330,391,118,18],
-	[1333,1291,458,109,28],
-	]
+def main():
+	#Input Data for the model - will look for a workouts.csv file from Training Peaks. If not found, resorts to your manual entry of TIZ by block
+	try: 
+		time_in_zone_by_month = get_input_data_from_TrainingPeaks('workouts.csv', 28)
+	except:
+		time_in_zone_by_month=[
+		[1205,902,330,48,20],
+		[1303,1021,371,69,19],
+		[1370,1311,380,53,24],
+		[1389,1330,391,118,18],
+		[1333,1291,458,109,28],
+		]
 
-#Output variable - tested FTP each month (replace with your own data)
-FTP_by_month = [248, 279, 295, 310, 303]
+	#Output variable - tested FTP each month (replace with your own data)
+	FTP_by_month = [248, 279, 295, 310, 303]
 
-X = time_in_zone_by_month
-y = FTP_by_month
+	X = time_in_zone_by_month
+	y = FTP_by_month
 
-model = LinearRegression().fit(X,y)
+	model = LinearRegression().fit(X,y)
 
-"""Print out model weights for each zone so that you can see how strongly they are
-weighted/how much each minute in each zone is worth. e.g. the first coefficient is the
-weight for Zone 1, the second is the weight for Zone 2 etc."""
-print(model.coef_)
-print(model.intercept_)
+	"""Print out model weights for each zone so that you can see how strongly they are
+	weighted/how much each minute in each zone is worth. e.g. the first coefficient is the
+	weight for Zone 1, the second is the weight for Zone 2 etc."""
+	print(model.coef_)
+	print(model.intercept_)
+	
+if __name__ == '__main__':
+	main()
 
 
 
