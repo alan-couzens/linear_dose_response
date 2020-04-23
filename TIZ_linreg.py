@@ -41,7 +41,7 @@ def get_input_data_from_TrainingPeaks(file, block_length_days):
 
 #Input Data for the model - will look for a workouts.csv file from Training Peaks. If not found, resorts to your manual entry of TIZ by block
 try: 
-	time_in_zone_by_month = get_input_data_from_TrainingPeaks('workouts.csv')
+	time_in_zone_by_month = get_input_data_from_TrainingPeaks('workouts.csv', 28)
 except:
 	time_in_zone_by_month=[
 	[1205,902,330,48,20],
