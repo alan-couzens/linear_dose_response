@@ -6,8 +6,8 @@ from sklearn.linear_model import LinearRegression
 #Input variables time in zone (minutes) for Z1,Z2,Z3,Z4,Z5 per month
 #Note: This could also be done from a csv file (e.g. from Training Peaks) using pd.read_csv
 
-def get_block_end(start):
-	end = start + timedelta(days=28)
+def get_block_end(start, block_length):
+	end = start + timedelta(days=block_length)
 
 def sum_TIZ_between_2_dates(data, col, date1, date2):
 	date1 = pd.to_datetime(date1)
